@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,6 +21,13 @@ class ProductGallery extends Model
         'products_id',
         'url'
     ];
+
+    public function product(){
+        return $this->BelongsTo(Product::class, 'id', 'products_id');
+    }
+    public function categories(){
+        return $this->BelongsTo(Product::class, 'id', 'products_id');
+    }
 
     public function getUrlAttribute($url){
         return config('app.url') . Storage::url($url);
