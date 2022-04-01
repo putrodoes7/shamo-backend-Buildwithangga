@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TransactionItem extends Model
 {
@@ -23,15 +24,15 @@ class TransactionItem extends Model
 
 
     public function product(){
-        return $this->hasOne(Products::class,  'id', 'products_id');
+        return $this->hasOne(Product::class,  'id', 'products_id');
     }
     // public function users(){
     //     return $this->belongsTo(User::class, 'users_id', 'id');
     // }
 
-    // public function transactioins(){
-    //     return $this->belongsTo(Transaction::class, 'transactions_id', 'id');
-    // }
+    public function transactions(){
+        return $this->belongsTo(Transaction::class, 'id', 'transactions_id');
+    }
 
 
 
